@@ -4,21 +4,24 @@ var slideShow = {
     photoList: ['photo1','photo2','photo3','photo4','photo5'],
     // integer currentPhotoIndex
     currentPhotoIndex: 0,
+    //an empty property named playInterval
+    playInterval: null,
     // function for current photo
     // logs the current photo name 
     // otherwise log "End of slideshow"
-    nextPhoto: function nextPhoto(){
-        if (this.currentPhotoIndex +1 < this.photoList.length){ //add +1 so that if you go beyound, it isn't undefined
+    nextPhoto: function(){
+        if (this.currentPhotoIndex < this.photoList.length - 1){ //add -1 so that if you go beyound, it isn't undefined
             this.currentPhotoIndex++;
             console.log(this.photoList[this.currentPhotoIndex]);
             return this.photoList[this.currentPhotoIndex];
         } else {
-        return "End of slideshow";  
-        }     
+        console.log("End of slideshow");  
+        this.pause(); 
+        }       
     },
     // function that goes backwards
-    prevPhoto: function prevPhoto(){
-        if (this.currentPhotoIndex > 0){
+    prevPhoto: function(){
+        if (this.currentPhotoIndex >= 0){
             this.currentPhotoIndex--;
             return this.photoList[this.currentPhotoIndex];
         } else {
@@ -27,44 +30,42 @@ var slideShow = {
     },
     
     // function returns the current photo from the list
-    getCurrentPhoto: function getCurrentPhoto(){
+    getCurrentPhoto: function(){
         return this.photoList[this.currentPhotoIndex];
     },
-    //an empty property named playInterval
-    playInterval: null,
     //play() function that moves to the next photo every 2000ms 
     play: function(){
-        var self = this;
+        var A = this;
         this.playInterval = setInterval(function(){
-            self.nextPhoto
-        }, 2000);
+            A.nextPhoto();
+            // console.log(A.getCurrentPhoto());
+        }, 2000)
     },
+
     //A pause() function that stops the slideshow
-    pause: function(){
+    pause: function (){
         clearInterval(this.playInterval);
-    }
-    }
-    
-
-
-slideShow.getCurrentPhoto();
-console.log(slideShow.getCurrentPhoto());
-
-slideShow.nextPhoto();
-console.log(slideShow.nextPhoto()); 
-console.log(slideShow.nextPhoto()); //testing
-console.log(slideShow.nextPhoto()); //testing//testing
-console.log(slideShow.nextPhoto());//testing
-console.log(slideShow.nextPhoto()); //testing 
-
-
-slideShow.prevPhoto();
-console.log(slideShow.prevPhoto());
-console.log(slideShow.prevPhoto());
-console.log(slideShow.prevPhoto()); 
-console.log(slideShow.prevPhoto()); //testing End of Slideshow
-console.log(slideShow.prevPhoto()); //testing End of Slideshow
+    },
+}
+slideShow.play()
 // console.log(slideShow.play());
+// console.log(slideShow.getCurrentPhoto());
+
+// slideShow.nextPhoto();
+// console.log(slideShow.nextPhoto()); 
+// console.log(slideShow.nextPhoto()); //testing
+// console.log(slideShow.nextPhoto()); //testing//testing
+// console.log(slideShow.nextPhoto());//testing
+// console.log(slideShow.nextPhoto()); //testing 
+
+
+// slideShow.prevPhoto();
+// console.log(slideShow.prevPhoto());
+// console.log(slideShow.prevPhoto());
+// console.log(slideShow.prevPhoto()); 
+// console.log(slideShow.prevPhoto()); //testing End of Slideshow
+// console.log(slideShow.prevPhoto()); //testing End of Slideshow
+
 
 
 
