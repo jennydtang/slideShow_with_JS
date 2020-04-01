@@ -7,21 +7,23 @@ var slideShow = {
     // function for current photo
     // logs the current photo name. 
     // otherwise log "End of slideshow"
-    nextPhoto: function(){
-        if (this.currentPhotoIndex < this.photoList.length){
+    nextPhoto: function nextPhoto(){
+        if (this.currentPhotoIndex + 1 < this.photoList.length){
+            this.currentPhotoIndex++;
             console.log(this.photoList[this.currentPhotoIndex]);
-            return this.currentPhotoIndex++;
+            return this.photoList[this.currentPhotoIndex];
         } else {
-            console.log("End of slideshow");  
+        return "End of slideshow";  
         }     
     },
     // function that goes backwards.
-    prevPhoto: function(){
-        if (this.currentPhotoIndex > 0){
-            return this.currentPhotoIndex--;
+    prevPhoto: function (){
+        if (this.currentPhotoIndex - 1 >= 0){
+            this.currentPhotoIndex--;
+            return this.photoList[this.currentPhotoIndex];
         } else {
-            console.log("End of slideshow");
-        }
+        return "End of slideshow";  
+        }     
     },
     
     // function returns the current photo from the list
@@ -39,7 +41,8 @@ console.log(slideShow.nextPhoto()); //testing
 
 slideShow.prevPhoto();
 console.log(slideShow.prevPhoto());
-console.log(slideShow.prevPhoto()); //testing
+console.log(slideShow.prevPhoto());
+console.log(slideShow.prevPhoto()); //testing End of Slideshow
 
 
 
